@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>让坦克开起来</title>
+		<style type="text/css">
+			input{font-size:26px;margin-top: 20px;}
+			body{background-image: url(images/grassland.png);}
+			#mytank{position: absolute;left:10px;top:100px}
+		</style>
+	</head>
+	<body>		
+		<img id="mytank" src="images/right.png"/>
+		<script>
+			// 编写代码，让坦克能上下左右移动
+			var mytank = document.getElementById("mytank");
+			var direction = "right";
+			document.onkeydown = function(event){
+			    var e = event || window.event || arguments.callee.caller.arguments[0];
+				if(e && e.keyCode==37){ // 左
+				    direction = "left";
+				    mytank.src = "images/left.png";
+
+				}
+				if(e && e.keyCode==38){ // 上
+				    direction = "up";
+				    mytank.src = "images/up.png";
+				}
+				if(e && e.keyCode==39){ // 右
+				    direction = "right";
+				    mytank.src = "images/right.png";
+				}
+				if(e && e.keyCode==40){ // 下
+				    direction = "down";
+				    mytank.src = "images/down.png";
+				}
+			}
+			
+			setInterval(function(){
+			    if(direction == "left"){
+			        mytank.style.left = mytank.offsetLeft - 10 + "px";
+			    }
+			    if(direction == "up"){
+					mytank.style.top = mytank.offsetTop - 10 + "px";
+			    }
+			    if(direction == "right"){
+					mytank.style.left = mytank.offsetLeft + 10 + "px";
+			    }
+			    if(direction == "down"){
+					mytank.style.top = mytank.offsetTop + 10 + "px";
+				}
+
+			})
+			
+			// 控制坦克不能移出屏幕
+			setInterval(function(){
+				if(mytank.offsetLeft < 0){
+				    mytank.style.left = 0;
+				}
+				if(mytank.offsetTop < 0){
+					mytank.style.top = 0;
+				}
+				if(mytank.offsetTop > 1080){
+					mytank.style.top = 1080 + "px";
+				}
+				
+				if(mytank.offsetLeft > 1920){
+				    mytank.style.left = 1920 + "px";
+				}
+
+			})
+			
+				// 控制坦克不能重叠	
+				setInterval(function(){
+					var tankArr = document.getElementsByTagName("img");
+					for(var i=0;i<tankArr.length;i++){
+					    if(tankArr[i] != mytank){
+							if(tankArr[i].offsetLeft == mytank.offsetLeft && tankArr[i].offsetTop == mytank.offsetTop){
+							    mytank.style.left = mytank.offsetLeft - 10 + "px";
+							    mytank.style.top = mytank.offsetTop - 10 + "px";
+
+							}
+
+					    }
+
+					}
+						
+				})
+				//禁用右键
+				document.oncontextmenu = function(){
+					
+					return false;
+				}
+
+				
+		</script>
+	</body>
+</html>
