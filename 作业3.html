@@ -11,7 +11,7 @@
 	</head>
 	<body>	/
 			<!--219970109  姜凯元-->
-		<img id="mytank" src="images/right.png"/>
+		<img id="mytank" src="./img/images/right.png"/>
 		<script>
 			// 编写代码，让坦克能上下左右移动
 			var mytank = document.getElementById("mytank");
@@ -20,38 +20,42 @@
 			    var e = event || window.event || arguments.callee.caller.arguments[0];
 				if(e && e.keyCode==37){ // 左
 				    direction = "left";
-				    mytank.src = "images/left.png";
+				    mytank.src = "./img/images/left.png";
+					mytank.style.left = mytank.offsetLeft - 10 + "px";
 
 				}
 				if(e && e.keyCode==38){ // 上
 				    direction = "up";
-				    mytank.src = "images/up.png";
+				    mytank.src = "./img/images/up.png";
+					mytank.style.top = mytank.offsetTop - 10 + "px";
 				}
 				if(e && e.keyCode==39){ // 右
 				    direction = "right";
-				    mytank.src = "images/right.png";
+				    mytank.src = "./img/images/right.png";
+					mytank.style.left = mytank.offsetLeft + 10 + "px";
 				}
 				if(e && e.keyCode==40){ // 下
 				    direction = "down";
-				    mytank.src = "images/down.png";
+				    mytank.src = "./img/images/down.png";
+					mytank.style.top = mytank.offsetTop + 10 + "px";
 				}
 			}
 			
-			setInterval(function(){
-			    if(direction == "left"){
-			        mytank.style.left = mytank.offsetLeft - 10 + "px";
-			    }
-			    if(direction == "up"){
-					mytank.style.top = mytank.offsetTop - 10 + "px";
-			    }
-			    if(direction == "right"){
-					mytank.style.left = mytank.offsetLeft + 10 + "px";
-			    }
-			    if(direction == "down"){
-					mytank.style.top = mytank.offsetTop + 10 + "px";
-				}
+			// setInterval(function(){
+			//     if(direction == "left"){
+			//         mytank.style.left = mytank.offsetLeft - 10 + "px";
+			//     }
+			//     if(direction == "up"){
+			// 		mytank.style.top = mytank.offsetTop - 10 + "px";
+			//     }
+			//     if(direction == "right"){
+			// 		mytank.style.left = mytank.offsetLeft + 10 + "px";
+			//     }
+			//     if(direction == "down"){
+			// 		mytank.style.top = mytank.offsetTop + 10 + "px";
+			// 	}
 
-			})
+			// })
 			
 			// 控制坦克不能移出屏幕
 			setInterval(function(){
